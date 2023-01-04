@@ -1,8 +1,8 @@
 function onSubmit(e) {
     e.preventDefault();
 
-    document.querySelector('.msg').textContent = '';
-    document.querySelector('#image').src = '';
+    // document.querySelector('.msg').textContent = '';
+    // document.querySelector('#image').src = '';
 
     const prompt = document.querySelector('#prompt').value;
     const size = document.querySelector('#size').value;
@@ -11,7 +11,7 @@ function onSubmit(e) {
         alert('Please add some text');
         return;
     }
-
+    console.log(prompt, size);
     generateImageRequest(prompt, size);
 }
 
@@ -19,7 +19,7 @@ async function generateImageRequest(prompt, size) {
     try {
         showSpinner();
 
-        const response = await fetch('/openai/generateimage', {
+        const response = await fetch('/openai/generateImage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ async function generateImageRequest(prompt, size) {
         }
 
         const data = await response.json();
-        // console.log(data);
+        console.log(data);
 
         const imageUrl = data.data;
 
